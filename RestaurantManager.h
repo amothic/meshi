@@ -2,8 +2,10 @@
 #define RESTAURANT_MANAGER_H_
 
 #include "SList.h"
+#include "InfoRestaurant.h"
 
 typedef SList<InfoRestaurant*> List;
+typedef List::Node Node;
 
 // レストランの情報を管理するクラス
 class RestaurantManager {
@@ -25,6 +27,6 @@ class RestaurantManager {
 	private:
 		List list;
 
-}
+};
 
 #endif // #ifndef RESTAURANT_MANAGER_H_

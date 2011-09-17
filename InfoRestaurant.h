@@ -22,6 +22,6 @@ class InfoRestaurant {
 	public:
 		std::string m_name;	// お店の名前
 
-}
+};
 
 #endif // #ifndef INFO_RESTAURANT_H_

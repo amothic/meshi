@@ -5,13 +5,10 @@
 #include <iostream>
 using namespace std;
 
-typedef SList<InfoRestaurant*> List;
-typedef List::Node Node;
-
 RestaurantManager::~RestaurantManager() {
 
 	for (const Node* node = list.GetFirst(); node != NULL; node = node->next) {
-		node->value delete;
+		delete node->value;
 	}
 
 }
@@ -25,7 +22,7 @@ RestaurantManager::Set(string& filename) {
 		InfoRestaurant* infoRestaurant;
 		infoRestaurant = new InfoRestaurant();
 
-		loadData.GetLine(infoRestaurant);
+		loadData.GetLine(*infoRestaurant);
 
 		list.Unshift(infoRestaurant);
 	} while(! loadData.Eof() );
@@ -37,9 +34,9 @@ RestaurantManager::Get(bool cheap, bool near, bool light) const {
 
 	for (const Node* node = list.GetFirst(); node != NULL; node = node->next) {
 
-		if ( node->m_cheap == cheap && 
-				node->m_near == near && node->m_light == light) {
-			Show(node->m_name);
+		if ( node->value->m_cheap == cheap && 
+				node->value->m_near == near && node->value->m_light == light) {
+			Show(node->value->m_name);
 		}
 	}
 
@@ -47,6 +44,7 @@ RestaurantManager::Get(bool cheap, bool near, bool light) const {
 
 void
 RestaurantManager::Show(string& name) const {
-	cout << ---- << endl;
-	cout << name << endl;
+
+	cout << "----" << endl;
+	cout <<  name  << endl;
 }

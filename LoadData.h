@@ -9,7 +9,7 @@
 class LoadData {
 
 	public:
-		LoadData(std::string& filename)
+		LoadData(std::string& filename);
 		virtual ~LoadData();
 
 	public:
@@ -19,8 +19,8 @@ class LoadData {
 		bool Eof();
 
 	private:
-		ifstream file;
+		std::ifstream file;
 
-}
+};
 
 #endif // #ifndef LOAD_DATA_H_

@@ -2,6 +2,7 @@
 #include "InfoRestaurant.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <cstdlib>
 using namespace std;
 
@@ -16,7 +17,7 @@ LoadData::~LoadData() {
 void
 LoadData::Open(string& filename) {
 
-	file.open(filename); 
+	file.open(filename.c_str()); 
 
 	if (! file.is_open()) {
 		cout << "ファイルが開けませんでした！" << endl;
@@ -37,12 +38,15 @@ LoadData::GetLine(InfoRestaurant& infoRestaurant) {
 		exit(EXIT_FAILURE);
 	}
 
+	// 末尾の空白を取り除く
+	input = input.substr( 0 , input.find_last_not_of( ' ' )+1 );
+
+
 	// カンマを半角スペースに変換
 	replace( input.begin(), input.end(), ',' , ' ' );
 
-
 	// istringstreamを利用して変数に格納
-	istringstream iss_input( input );
+	istringstream iss_input(input);
 	bool cheap, near, light;
 	string name;
 

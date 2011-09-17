@@ -1,4 +1,5 @@
 #include "InfoRestaurant.h"
+#include <string>
 using namespace std;
 
 InfoRestaurant::InfoRestaurant(bool cheap, bool near, bool light, string& name)
