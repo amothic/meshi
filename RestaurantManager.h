@@ -1,6 +1,10 @@
 #ifndef RESTAURANT_MANAGER_H_
 #define RESTAURANT_MANAGER_H_
 
+#include "SList.h"
+
+typedef SList<InfoRestaurant*> List;
+
 // レストランの情報を管理するクラス
 class RestaurantManager {
 
@@ -17,6 +21,9 @@ class RestaurantManager {
 
 		// 渡された文字列を出力する
 		void Show(std::string& name) const;
+
+	private:
+		List list;
 
 }
 
