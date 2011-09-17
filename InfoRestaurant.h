@@ -7,6 +7,7 @@
 class InfoRestaurant {
 
 	public:
+		InfoRestaurant() { }
 		InfoRestaurant(bool cheap, bool near, bool light, std::string& name);
 
 	public:

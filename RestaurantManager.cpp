@@ -1,5 +1,7 @@
 #include "RestaurantManager.h"
 #include "InfoRestaurant.h"
+#include "LoadData.h"
+#include "SList.h"
 #include <iostream>
 using namespace std;
 
@@ -7,22 +9,26 @@ typedef SList<InfoRestaurant*> List;
 typedef List::Node Node;
 
 RestaurantManager::~RestaurantManager() {
-	//;TODO
-	// Listに登録されたクラスをdeleteする
+
+	for (const Node* node = list.GetFirst(); node != NULL; node = node->next) {
+		node->value delete;
+	}
+
 }
 
 void
 RestaurantManager::Set(string& filename) {
-	//;TODO
-	// データを読み出すクラスを作成
 
-	//;TODO
-	// データを読み出すループを作成
-	{
-	InfoRestaurant* infoRestaurant;
-	infoRestaurant = new InfoRestaurant(cheap, near, light, name);
-	list.Unshift(infoRestaurant);
-	}
+	LoadData loadData(filename);
+
+	do {
+		InfoRestaurant* infoRestaurant;
+		infoRestaurant = new InfoRestaurant();
+
+		loadData.GetLine(infoRestaurant);
+
+		list.Unshift(infoRestaurant);
+	} while(! loadData.Eof() );
 
 }
 
