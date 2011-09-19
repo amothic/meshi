@@ -14,7 +14,7 @@ RestaurantManager::~RestaurantManager() {
 }
 
 void
-RestaurantManager::Set(string& filename) {
+RestaurantManager::Set(const string& filename) {
 
 	LoadData loadData(filename);
 
@@ -22,9 +22,17 @@ RestaurantManager::Set(string& filename) {
 		InfoRestaurant* infoRestaurant;
 		infoRestaurant = new InfoRestaurant();
 
-		loadData.GetLine(*infoRestaurant);
+		// 正常に読み込めたか判定する
+		if( loadData.GetLine(*infoRestaurant) ) {
 
-		list.Unshift(infoRestaurant);
+			list.Unshift(infoRestaurant);
+
+		} else {
+
+			delete infoRestaurant;
+
+		}
+
 	} while(! loadData.Eof() );
 
 }
@@ -43,7 +51,7 @@ RestaurantManager::Get(bool cheap, bool near, bool light) const {
 }
 
 void
-RestaurantManager::Show(string& name) const {
+RestaurantManager::Show(const string& name) const {
 
 	cout << "----" << endl;
 	cout <<  name  << endl;

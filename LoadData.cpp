@@ -6,7 +6,7 @@
 #include <cstdlib>
 using namespace std;
 
-LoadData::LoadData(string& filename) {
+LoadData::LoadData(const string& filename) {
 	Open(filename);
 }
 
@@ -15,7 +15,7 @@ LoadData::~LoadData() {
 }
 
 void
-LoadData::Open(string& filename) {
+LoadData::Open(const string& filename) {
 
 	file.open(filename.c_str()); 
 
@@ -26,11 +26,16 @@ LoadData::Open(string& filename) {
 
 }
 
-void
+bool
 LoadData::GetLine(InfoRestaurant& infoRestaurant) {
 
 	string input;
 	getline(file, input);
+
+	// ファイルの最後に到達したとき、falseを返す
+	if(! file) {
+		return false;
+	}
 
 	// カンマの数をチェック
 	if( count( input.begin(), input.end(), ',' ) != 3 ) {
@@ -60,6 +65,8 @@ LoadData::GetLine(InfoRestaurant& infoRestaurant) {
 	}
 
 	infoRestaurant.Set(cheap, near, light, name);
+
+	return true;
 
 }
 

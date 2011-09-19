@@ -9,13 +9,13 @@
 class LoadData {
 
 	public:
-		LoadData(std::string& filename);
+		LoadData(const std::string& filename);
 		virtual ~LoadData();
 
 	public:
-		void Open(std::string& filename);
+		void Open(const std::string& filename);
 
-		void GetLine(InfoRestaurant& infoRestaurant);
+		bool GetLine(InfoRestaurant& infoRestaurant);
 		bool Eof();
 
 	private:

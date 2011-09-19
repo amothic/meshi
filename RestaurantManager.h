@@ -16,13 +16,13 @@ class RestaurantManager {
 	public:
 		// ファイルからデータを読み出す
 		// 読みだしたデータは、リストに登録する
-		void Set(std::string& filename);
+		void Set(const std::string& filename);
 
 		// 対象のデータを取り出して、Show()に渡す
 		void Get(bool cheap, bool near, bool light) const;
 
 		// 渡された文字列を出力する
-		void Show(std::string& name) const;
+		void Show(const std::string& name) const;
 
 	private:
 		List list;
